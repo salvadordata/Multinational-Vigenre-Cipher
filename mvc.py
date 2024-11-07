@@ -77,13 +77,3 @@ def vigenere_decrypt(encrypted_message: str, key: str) -> str:
             decrypted_message.append(char)  # Add unknown characters as-is
     
     return ''.join(decrypted_message)
-
-# Example usage
-message = "Hello 世界 123 😊\nThis is a test."
-key = "Key🔑愛❤️"
-encrypted = vigenere_encrypt(message, key)
-decrypted = vigenere_decrypt(encrypted, key)
-
-print(f"Original Message: {message}")
-print(f"Encrypted Message: {encrypted}")
-print(f"Decrypted Message: {decrypted}")
