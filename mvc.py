@@ -1,5 +1,7 @@
 # Vigenère Cipher with support for multilingual characters, emojis, handling spaces/newlines, and input validation.
 
+import os
+
 # Define alphabets including multilingual characters, emojis, English letters, numbers, and symbols
 chinese_alphabet = "的一是了我不人在他有这个上们来到时大地为子中你说生国年就那和要她出也得里后自以会家可下而过天去能对小多然于心学之都好看起发工还"
 japanese_alphabet = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
@@ -26,7 +28,12 @@ def validate_input(input_text: str) -> None:
     """Validates that all characters in input_text are part of the allowed alphabet."""
     for char in input_text:
         if char not in char_to_index:
+            print(f"Invalid character '{char}' in input.")
             raise ValueError(f"Invalid character '{char}' in input. Only characters in the defined alphabet are allowed.")
+
+def generate_otp(length: int) -> str:
+    """Generate a one-time pad key of the given length."""
+    return ''.join(index_to_char[os.urandom(1)[0] % alphabet_length] for _ in range(length))
 
 def extend_key(message: str, key: str) -> str:
     """Extend the key to match the length of the message."""
